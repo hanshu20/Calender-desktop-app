@@ -1,0 +1,21 @@
+body{
+  font-family: Arial;
+  padding:20px;
+}
+
+#calendar{
+  display:grid;
+  grid-template-columns: repeat(7,1fr);
+  gap:10px;
+}
+
+.day{
+  border:1px solid #ccc;
+  padding:20px;
+  text-align:center;
+  cursor:pointer;
+}
+
+.day:hover{
+  background:#f2f2f2;
+}
