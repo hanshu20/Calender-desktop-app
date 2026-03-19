@@ -1,3 +1,5 @@
-window.addEventListener("DOMContentLoaded", () => {
-  console.log("Calendar App Loaded");
+﻿const { contextBridge, ipcRenderer } = require('electron');
+
+contextBridge.exposeInMainWorld('electronAPI', {
+  notify: (payload) => ipcRenderer.invoke('notify', payload)
 });

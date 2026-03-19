@@ -1,29 +1,47 @@
 {
   "name": "electron-calendar",
-  "version": "1.0.0",
-  "description": "",
+  "version": "2.0.0",
+  "description": "Supernova desktop calendar",
   "main": "main.js",
   "scripts": {
+    "ng": "ng",
+    "start:ng": "ng serve",
     "start": "electron .",
-    "build": "electron-builder",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently -k \"ng serve\" \"wait-on http://localhost:4200 && electron .\"",
+    "build:renderer": "ng build",
+    "build": "npm run build:renderer && electron-builder"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@angular-devkit/build-angular": "latest",
+    "@angular/cli": "latest",
+    "@angular/compiler-cli": "latest",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.0",
     "electron": "^40.8.0",
-    "electron-builder": "^26.8.1"
+    "electron-builder": "^26.8.1",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.5.4",
+    "wait-on": "^7.2.0"
+  },
+  "dependencies": {
+    "@angular/animations": "latest",
+    "@angular/common": "latest",
+    "@angular/compiler": "latest",
+    "@angular/core": "latest",
+    "@angular/forms": "latest",
+    "@angular/platform-browser": "latest",
+    "@angular/platform-browser-dynamic": "latest",
+    "rxjs": "latest",
+    "zone.js": "latest"
   },
   "build": {
     "appId": "com.calendar.desktop",
-    "productName": "My Calendar",
+    "productName": "Supernova Calendar",
     "win": {
       "target": "nsis"
     }
-  },
-  "dependencies": {
-    "@fullcalendar/core": "^6.1.20",
-    "@fullcalendar/daygrid": "^6.1.20"
   }
 }
