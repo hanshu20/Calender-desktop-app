@@ -24,6 +24,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "./",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false

@@ -11,8 +11,19 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
-      nodeIntegration: false
+      nodeIntegration: false,
+      devTools: true
     }
+  });
+
+  win.webContents.on('did-fail-load', (_event, errorCode, errorDesc, validatedURL, isMainFrame) => {
+    if (isMainFrame) {
+      console.error('did-fail-load', { errorCode, errorDesc, validatedURL });
+    }
+  });
+
+  win.webContents.on('render-process-gone', (_event, details) => {
+    console.error('render-process-gone', details);
   });
 
   if (isDev) {
@@ -20,6 +31,10 @@ function createWindow() {
     win.webContents.openDevTools({ mode: 'detach' });
   } else {
     win.loadFile(path.join(__dirname, 'dist/renderer/index.html'));
+  }
+
+  if (app.commandLine.hasSwitch('devtools')) {
+    win.webContents.openDevTools({ mode: 'detach' });
   }
 
   Menu.setApplicationMenu(null);

@@ -8,7 +8,7 @@
     "start:ng": "ng serve",
     "start": "electron .",
     "dev": "concurrently -k \"ng serve\" \"wait-on http://localhost:4200 && electron .\"",
-    "build:renderer": "ng build",
+    "build:renderer": "ng build --configuration production --base-href ./",
     "build": "npm run build:renderer && electron-builder"
   },
   "author": "",
@@ -40,6 +40,12 @@
   "build": {
     "appId": "com.calendar.desktop",
     "productName": "Supernova Calendar",
+    "files": [
+      "dist/renderer/**",
+      "main.js",
+      "preload.js",
+      "package.json"
+    ],
     "win": {
       "target": "nsis"
     }
